@@ -15,8 +15,6 @@ class Controller:
     def handleStampaInfo(self,e):
         pass
 
-    def handleStampaDettagli(self,e):
-        pass
 
     def handleSequenza(self,e):
         pass

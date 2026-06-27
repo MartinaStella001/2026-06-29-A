@@ -13,10 +13,7 @@ class View(ft.UserControl):
         self._controller = None
         # graphical elements
         self._title = None
-        self.txt_name = None
-        self.btn_hello = None
-        self.txt_result = None
-        self.txt_container = None
+        self._txt_result = None
 
     def load_interface(self):
         # title
@@ -25,37 +22,32 @@ class View(ft.UserControl):
 
 
         self._ddCountry = ft.Dropdown(label="Country")
-        self._btnCreaGrafo = ft.ElevatedButton(text="Crea grafo clienti",
-                                               on_click=self._controller.handleCreaGrafo)
 
-        row1 = ft.Row([ft.Container(self._ddCountry, width=250),
-                                    ft.Container(self._btnCreaGrafo, width=250)],
+        self._btnCreaGrafo = ft.ElevatedButton(text="Crea grafo",
+                                               on_click=self._controller.handleCreaGrafo)
+        self._btnStampaInfo = ft.ElevatedButton(text="Stampa Info",
+                                                on_click=self._controller.handleStampaInfo)
+
+
+        row1 = ft.Row([ft.Container(self._ddCountry, width=200),
+                                    ft.Container(self._btnCreaGrafo, width=150),
+                                    ft.Container(self._btnStampaInfo, width=150)],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
-        self._btnStampaInfo = ft.ElevatedButton(text="Stampa Info",
-                                                on_click=self._controller.handleStampaInfo, width=200)
-        self._btnStampaDettagli = ft.ElevatedButton(text="Stampa dettagli artisti",
-                                                    on_click=self._controller.handleStampaDettagli, width=200)
-
-        row2 = ft.Row([ft.Container(self._btnStampaInfo, width=250),
-                                ft.Container(self._btnStampaDettagli, width=250), ],
-                      alignment=ft.MainAxisAlignment.CENTER)
-
-        self._page.controls.append(row2)
 
         self._ddClienti = ft.Dropdown(label="Clienti")
         self._btnSequenza = ft.ElevatedButton(text="Trova sequenza clienti",
-                                              on_click=self._controller.handleSequenza, width=200)
+                                              on_click=self._controller.handleSequenza)
 
-        row3 = ft.Row([ft.Container(self._ddClienti, width=250),
-                       ft.Container(self._btnSequenza, width=250)],
+        row3 = ft.Row([ft.Container(self._ddClienti, width=255),
+                       ft.Container(self._btnSequenza, width=255)],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row3)
 
         # List View where the reply is printed
-        self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
-        self._page.controls.append(self.txt_result)
+        self._txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+        self._page.controls.append(self._txt_result)
         self._page.update()
 
     @property
