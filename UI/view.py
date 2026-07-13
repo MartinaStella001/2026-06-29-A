@@ -22,6 +22,7 @@ class View(ft.UserControl):
 
 
         self._ddCountry = ft.Dropdown(label="Country")
+        self._controller.fillDDCountries()
 
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea grafo",
                                                on_click=self._controller.handleCreaGrafo)
